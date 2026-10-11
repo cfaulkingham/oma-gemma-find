@@ -1,0 +1,29 @@
+# Secrets / local config
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python build/test artifacts
+__pycache__/
+*.py[cod]
+build/
+dist/
+*.egg-info/
+.coverage
+htmlcov/
+.pytest_cache/
+.venv/
+runtime/
+
+# Scratch / OS / editor
+*.db
+*.sqlite
+*.sqlite3
+*.profraw
+*.log
+*.bak
+*.backup
+.DS_Store
+~$*

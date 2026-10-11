@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+set -euo pipefail
+here=$(/usr/bin/dirname -- "$(/usr/bin/readlink -f -- "$0")")
+exec /usr/bin/python3 -I -S -B "$here/oma_gemma_find.py" "$@"

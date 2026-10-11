@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "id": "io.github.cfaulkingham.oma-gemma-find",
+  "name": "Gemma Find",
+  "version": "0.1.0",
+  "author": "Colin Faulkingham",
+  "license": "MIT",
+  "description": "Local semantic search over your folders, with Gemma 4 answers, on LiteRT.",
+  "kinds": ["overlay", "bar-widget"],
+  "keepLoaded": true,
+  "entryPoints": {"overlay": "Overlay.qml", "barWidget": "BarWidget.qml"},
+  "keywords": ["search", "gemma", "litert", "files"]
+}

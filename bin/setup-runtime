@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+# Create runtime/ with Python 3.14 and the pinned LiteRT wheel.
+# Run this yourself. Opening the plugin does not run it.
+set -euo pipefail
+plugin=$(/usr/bin/dirname -- "$(/usr/bin/readlink -f -- "$0")")
+plugin=$(/usr/bin/dirname -- "$plugin")
+if [[ -L "$plugin/runtime" ]]; then
+    printf '%s\n' "runtime is a symlink; refusing to write through it." >&2
+    exit 1
+fi
+home=$(/usr/bin/python3 -I -S -c 'import os, pwd; print(pwd.getpwuid(os.geteuid()).pw_dir, end="")')
+if [[ -x "$home/.local/bin/uv" ]]; then
+    uv="$home/.local/bin/uv"
+elif [[ -x /usr/bin/uv ]]; then
+    uv=/usr/bin/uv
+else
+    printf '%s\n' "uv was not found at $home/.local/bin/uv or /usr/bin/uv." >&2
+    exit 1
+fi
+"$uv" venv --python 3.14 "$plugin/runtime"
+"$uv" pip install --python "$plugin/runtime/bin/python" --require-hashes --no-deps -r "$plugin/requirements.txt"
+printf '%s\n' "LiteRT runtime is ready in $plugin/runtime"
